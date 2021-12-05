@@ -1,10 +1,4 @@
-const fs = require('fs');
-const readline = require('readline');
-
-const reader = readline.createInterface({
-	input: fs.createReadStream('input.txt'),
-	console: false
-});
+const fileReader = require('../filereader')('input.txt');
 
 class Space {
 	constructor(value) {
@@ -79,7 +73,7 @@ let index = -1;
 
 const boards = [];
 
-reader.on('line', line => {
+fileReader.on('line', line => {
 	if (firstLine) {
 		numbers = line.split(',');
 		firstLine = false;
@@ -93,7 +87,7 @@ reader.on('line', line => {
 	}
 });
 
-reader.on('close', () => {
+fileReader.on('close', () => {
 	numbers.forEach(number => {
 		boards.forEach((board) => {
 			board.markBoard(number);

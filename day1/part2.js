@@ -1,10 +1,4 @@
-const fs = require('fs');
-const readline = require('readline');
-
-const reader = readline.createInterface({
-	input: fs.createReadStream('input.txt'),
-	console: false
-});
+const fileReader = require('../filereader')('input.txt');
 
 const depths = [];
 const countIncreasements = (depths, index, previous, count) => {
@@ -21,12 +15,12 @@ const countIncreasements = (depths, index, previous, count) => {
 	return countIncreasements(depths, index + 1, current, count);
 }
 
-reader.on('line', line => {
+fileReader.on('line', line => {
 	const depth = parseInt(line);
 
 	depths.push(depth);
 });
 
-reader.on('close', () => {
+fileReader.on('close', () => {
 	console.log(countIncreasements(depths, 0, -1, 0));
 });

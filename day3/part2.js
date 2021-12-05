@@ -1,20 +1,14 @@
-const fs = require('fs');
-const readline = require('readline');
-
-const reader = readline.createInterface({
-	input: fs.createReadStream('input.txt'),
-	console: false
-});
+const fileReader = require('../filereader')('input.txt');
 
 const numbers = [];
 
-reader.on('line', line => {
+fileReader.on('line', line => {
 	const digits = line.split('');
 
 	numbers.push(digits);
 });
 
-reader.on('close', () => {
+fileReader.on('close', () => {
 	let oxygen = numbers;
 	let co2 = numbers;
 	let index = 0;

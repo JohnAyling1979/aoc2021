@@ -1,10 +1,4 @@
-const fs = require('fs');
-const readline = require('readline');
-
-const reader = readline.createInterface({
-	input: fs.createReadStream('input.txt'),
-	console: false
-});
+const fileReader = require('../filereader')('input.txt');
 
 class Point {
 	constructor(point) {
@@ -20,7 +14,7 @@ class Point {
 
 const points = {};
 
-reader.on('line', input => {
+fileReader.on('line', input => {
 	const line = input.split('->').map(point => point.trim().split(',').map(point => parseInt(point)));
 
 	if (line[0][0] === line[1][0]) {
@@ -112,7 +106,7 @@ reader.on('line', input => {
 	}
 });
 
-reader.on('close', () => {
+fileReader.on('close', () => {
 	let count = 0;
 
 	Object.values(points).forEach(point => {

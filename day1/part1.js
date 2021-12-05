@@ -1,15 +1,9 @@
-const fs = require('fs');
-const readline = require('readline');
-
-const reader = readline.createInterface({
-	input: fs.createReadStream('input.txt'),
-	console: false
-});
+const fileReader = require('../filereader')('input.txt');
 
 let count = 0;
 let previous = -1;
 
-reader.on('line', line => {
+fileReader.on('line', line => {
 	const depth = parseInt(line);
 
 	if (depth > previous && previous !== -1) {
@@ -19,6 +13,6 @@ reader.on('line', line => {
 	previous = depth;
 });
 
-reader.on('close', () => {
+fileReader.on('close', () => {
 	console.log(count);
 });

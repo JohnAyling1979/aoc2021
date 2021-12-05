@@ -1,15 +1,9 @@
-const fs = require('fs');
-const readline = require('readline');
-
-const reader = readline.createInterface({
-	input: fs.createReadStream('input.txt'),
-	console: false
-});
+const fileReader = require('../filereader')('input.txt');
 
 const ones = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 const zeros = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-reader.on('line', line => {
+fileReader.on('line', line => {
 	const digits = line.split('');
 
 	digits.forEach((digit, index) => {
@@ -21,7 +15,7 @@ reader.on('line', line => {
 	});
 });
 
-reader.on('close', () => {
+fileReader.on('close', () => {
 	let gamma = '';
 	let epsilon = '';
 
