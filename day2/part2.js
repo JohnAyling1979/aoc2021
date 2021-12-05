@@ -5,8 +5,7 @@ let depth = 0;
 let aim = 0;
 
 fileReader.on('line', line => {
-	const command = line.split(' ');
-	command[1] = parseInt(command[1]);
+	const command = line.split(' ').map(command => isNaN(command) ? command : parseInt(command));
 
 	switch (command[0]) {
 		case 'forward':
